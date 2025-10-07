@@ -1,0 +1,49 @@
+from typing import List
+class Solution:
+    # 快排序可以：时间O(nlogn)
+    def findKthLargest(self, nums: List[int], k: int) -> int:
+        nums.sort()
+        res = list(nums)
+        size = len(res)
+        return res[size-k]
+    
+    # 思路2: 改版的快排，判断每次快排结束的i是否index为k，是的话就找到了，否则再左右递归。
+
+nums = [3,2,3,1,2,4,5,5,6]
+k = 4
+
+s = Solution()
+s.findKthLargest(nums, k)
+
+
+
+# 堆算法
+class Solution2:
+    def findKthLargest(self, nums: List[int], k: int) -> int:
+        n = len(nums)
+        self.build_maxHeap(nums)
+        for i in range(k-1): # 选k次就是答案
+            nums[0], nums[n-1-i] = nums[n-1-i], nums[0]
+            self.adjust_down(nums, 0, n-1-i-1)
+        return nums[0]
+
+
+    def build_maxHeap(self, nums: List[int]) -> None: # 构建大根堆
+        n = len(nums)
+        for root in range(n//2, -1, -1):
+            self.adjust_down(nums, root, n - 1)
+
+    def adjust_down(self, nums: List[int], root: int, hi: int) -> None: # 调整
+        if root > hi:
+            return 
+        t = nums[root]
+        child = 2 * root + 1
+        while child <= hi:
+            if child + 1 <= hi and nums[child] < nums[child + 1]:
+                child += 1
+            if t >= nums[child]:
+                break
+            nums[root] = nums[child]
+            root = child
+            child = 2 * root + 1
+        nums[root] = t
