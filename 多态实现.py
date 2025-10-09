@@ -48,7 +48,7 @@ if __name__ == "__main__":
         (BankCardPay(), 300.0)
     ]
 
-    # 只用一个order对象，动态切换支付方式并结算（不使用for循环）
+    # 只用一个order对象，动态切换支付方式并结算
     order.payment, amount = payments[0]
     order.checkout(amount)
 
