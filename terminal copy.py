@@ -13,3 +13,4 @@ def execute_python(code):
     # 推荐使用更安全的替代方法，例如使用 ast.literal_eval 来安全地执行代码。
 
 print(execute_python("print('Hello, World!')")) # Hello, World
+print(execute_python("print(1+1)")) # 2
