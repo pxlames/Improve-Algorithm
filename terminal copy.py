@@ -12,4 +12,4 @@ def execute_python(code):
     # 注意：在生产环境中，应该避免使用 exec 来执行不可信的代码，以防止安全风险。
     # 推荐使用更安全的替代方法，例如使用 ast.literal_eval 来安全地执行代码。
 
-print(execute_python("print('Hello, World!')")) # Hello, World!
+print(execute_python("print('Hello, World!')")) # Hello, World
